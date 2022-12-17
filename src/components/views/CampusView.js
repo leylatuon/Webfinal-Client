@@ -13,7 +13,7 @@ const CampusView = (props) => {
   // Render a single Campus view with list of its students
   return (
     <div>
-      <img src={campus.imageUrl} alt="campus_image"/>
+      <img style={{width: '500px',paddingTop: '2rem'}} src={campus.imageURL} alt="campus_image"/>
       <h1>{campus.name}</h1>
       <p>{campus.address}</p>
       <p>{campus.description}</p>
