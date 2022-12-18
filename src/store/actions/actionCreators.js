@@ -54,7 +54,6 @@ export const fetchAllStudents = (students) => {
 };
 
 export const addStudent = (student) => {
-  console.log("hisidfjdis");
   return {
     type: at.ADD_STUDENT,
     payload: student,
