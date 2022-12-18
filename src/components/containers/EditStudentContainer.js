@@ -37,16 +37,16 @@ class EditStudentContainer extends Component {
     event.preventDefault();  // Prevent browser reload/refresh after submit.
 
     let student = {
-        firstname: this.props.student.firstname,
-        lastname: this.props.student.lastname,
-        campusId: this.props.student.campusId,
-        email: this.props.student.email,
-        imageURL: this.props.student.imageURL,
-        gpa: this.props.student.gpa
+        firstname: this.state.firstname === "" ? this.props.student.firstname : this.state.firstname,
+        lastname: this.state.lastname === "" ? this.props.student.lastname : this.state.lastname,
+        campusId: this.state.campusId === "" ? this.props.student.campusId : this.state.campusId,
+        email: this.state.email === "" ? this.props.student.email : this.state.email,
+        imageURL: this.state.imageURL === "" ? this.props.student.imageURL : this.state.imageURL,
+        gpa: this.state.gpa === "" ? this.props.student.gpa : this.state.gpa,
     };
-
     await this.props.editStudent(student);
     // Update state, and trigger redirect to show the student
+
     this.setState({
       firstname: "", 
       lastname: "", 
