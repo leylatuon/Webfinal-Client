@@ -26,6 +26,7 @@ class AllCampusesContainer extends Component {
         <Header />
         <AllCampusesView
           allCampuses={this.props.allCampuses}
+          editCampus={this.props.editCampus}
           deleteCampus={this.props.deleteCampus}
         />
       </div>

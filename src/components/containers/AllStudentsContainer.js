@@ -12,6 +12,7 @@ import { withRouter } from "react-router-dom";
 
 import { 
   fetchAllStudentsThunk,
+  editStudentThunk,
   deleteStudentThunk
 } from '../../store/thunks';
 
@@ -30,6 +31,7 @@ class AllStudentsContainer extends Component {
         <Header />
         <AllStudentsView 
           students={this.props.allStudents}
+          editStudent={this.props.editStudent}
           deleteStudent={this.props.deleteStudent}   
         />
       </div>
@@ -50,6 +52,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     fetchAllStudents: () => dispatch(fetchAllStudentsThunk()),
+    editStudent:(studentId) => dispatch(editStudentThunk(studentId)),
     deleteStudent: (studentId) => dispatch(deleteStudentThunk(studentId)),
   };
 };
