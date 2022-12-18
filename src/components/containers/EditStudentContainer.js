@@ -15,7 +15,7 @@ class EditStudentContainer extends Component {
       lastname: "", 
       email: "",
       imageURL: "",
-      gpa: 0.0,
+      gpa: null,
       campusId: null, 
       redirect: false, 
       redirectId: null
@@ -42,18 +42,19 @@ class EditStudentContainer extends Component {
         campusId: this.state.campusId === "" ? this.props.student.campusId : this.state.campusId,
         email: this.state.email === "" ? this.props.student.email : this.state.email,
         imageURL: this.state.imageURL === "" ? this.props.student.imageURL : this.state.imageURL,
-        gpa: this.state.gpa === "" ? this.props.student.gpa : this.state.gpa,
+        gpa: this.state.gpa === null ? this.props.student.gpa : this.state.gpa,
     };
+    console.log(student);
     await this.props.editStudent(student);
-    // Update state, and trigger redirect to show the student
 
+    // Update state, and trigger redirect to show the student
     this.setState({
       firstname: "", 
       lastname: "", 
       campusId: null,
       email: "",
       imageURL: "",
-      gpa: 0.0,
+      gpa: null,
       redirect: true, 
       redirectId: this.props.student.id
     });
