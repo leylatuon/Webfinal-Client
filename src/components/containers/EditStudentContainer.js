@@ -45,7 +45,7 @@ class EditStudentContainer extends Component {
         gpa: this.props.student.gpa
     };
 
-    // let updatedStudent = await this.props.editStudent(student);
+    await this.props.editStudent(student);
     // Update state, and trigger redirect to show the student
     this.setState({
       firstname: "", 
@@ -55,7 +55,7 @@ class EditStudentContainer extends Component {
       imageURL: "",
       gpa: 0.0,
       redirect: true, 
-      redirectId: student.id
+      redirectId: this.props.student.id
     });
   }
 
