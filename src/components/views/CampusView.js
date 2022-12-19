@@ -8,8 +8,8 @@ import { Link } from "react-router-dom";
 
 // Take in props data to construct the component
 const CampusView = (props) => {
-  const {campus, deleteCampus} = props;
-  
+  const {campus, deleteCampus, fetchStudent, editStudent, fetchAllStudents} = props;
+
   if(campus.students.length == 0){
     return (
       <div>
@@ -36,7 +36,6 @@ const CampusView = (props) => {
         <button onClick={() => deleteCampus(campus.id)}>Delete</button>
       </Link>
 
-
       {campus.students.map( student => {
         let name = student.firstname + " " + student.lastname;
         return (
@@ -47,20 +46,7 @@ const CampusView = (props) => {
             <Link to={`/editstudent/${student.id}`}>
               <button>Edit Student</button>
             </Link>
-            <button onClick={() => {
-              console.log(campus.students);
-              let index = -1;
-              for(let i = 0; i < campus.students.length; i++){
-                if(campus.students[i].id == student.id){
-                  student.id.campusId = null;
-                  index = i;
-                  break;
-                }
-              }
-              console.log(index);
-              //campus.students.splice(index, 1);
-              console.log("Should delete student from campus");
-            }}>Remove Student</button>
+            <button onClick={() => student.campus = null}>Remove Student</button>
           </div>
         );
       })}
