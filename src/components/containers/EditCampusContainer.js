@@ -59,7 +59,7 @@ class EditCampusContainer extends Component {
       description: "",
       imageURL: "",
       redirect: true,
-      redirectId: this.props.Campus.id
+      redirectId: this.props.campus.id
     });
   }
 
