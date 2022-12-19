@@ -23,7 +23,8 @@ class NewCampusContainer extends Component {
       description: "",
       imageURL: "",
       redirect: false,
-      redirectId: null
+      redirectId: null,
+      named: true
     };
   }
 
@@ -45,8 +46,18 @@ class NewCampusContainer extends Component {
         imageURL: this.state.imageURL
     };
 
-    // Add new campus in back-end database
-    let newCampus = await this.props.addCampus(campus);
+    if(this.state.name == ""){
+      this.setState({
+        named: false
+      });
+    }
+    else{
+      // Add new campus in back-end database
+      let newCampus = await this.props.addCampus(campus);
+      this.setState({
+        redirectId: newCampus.id
+      });
+    }
 
     // Update state, and trigger redirect to show the new campus
     this.setState({
@@ -55,7 +66,6 @@ class NewCampusContainer extends Component {
       description: "",
       imageURL: "",
       redirect: true,
-      redirectId: newCampus.id
     });
   }
 
@@ -66,6 +76,12 @@ class NewCampusContainer extends Component {
 
   // Render new campus input form
   render() {
+    // Alert if no name
+    if(this.state.named == false){
+      alert("Invalid Input: Please enter a name");
+      this.state.named = true;
+      this.state.redirect = false;
+    }
     // Redirect to new campus page after submit
     if(this.state.redirect) {
       return (<Redirect to={`/campus/${this.state.redirectId}`}/>)
