@@ -42,23 +42,24 @@ class EditCampusContainer extends Component {
     event.preventDefault();  // Prevent browser reload/refresh after submit.
 
     let campus = {
+      id: this.props.campus.id,
         name: this.state.name === "" ? this.props.campus.name : this.state.name,
         address: this.state.address === "" ? this.props.campus.address : this.state.address,
         description: this.state.description === "" ? this.props.campus.description : this.state.description,
         imageURL: this.state.imageURL === "" ? this.props.campus.imageURL : this.state.imageURL
     };
 
-    // Edit campus in back-end database
-  await this.props.editCampus(campus);
+    await this.props.editCampus(campus);
 
     // Update state, and trigger redirect to show the edited campus
     this.setState({
+      id: null,
       name: "",
       address: "",
       description: "",
       imageURL: "",
       redirect: true,
-      redirectId: this.props.Campus.id
+      redirectId: this.props.campus.id
     });
   }
 
