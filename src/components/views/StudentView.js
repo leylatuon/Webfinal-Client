@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const StudentView = (props) => {
   const { student, deleteStudent } = props;
 
-  if(student.campus  == null){
+  if(student.campus == null){
     return (
       <div>
         <img style={{width: '200px',paddingTop: '2rem'}} src={student.imageURL} alt="profile_picture"/>
