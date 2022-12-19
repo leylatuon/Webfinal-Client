@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 // Take in props data to construct the component
 const CampusView = (props) => {
-  const {campus} = props;
+  const {campus, deleteCampus} = props;
   
   if(campus.students.length == 0){
     return (
@@ -44,6 +44,7 @@ const CampusView = (props) => {
               let index = -1;
               for(let i = 0; i < campus.students.length; i++){
                 if(campus.students[i].id == student.id){
+                  student.campusId = null;
                   index = i;
                   break;
                 }
