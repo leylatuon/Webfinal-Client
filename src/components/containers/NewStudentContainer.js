@@ -50,7 +50,7 @@ class NewStudentContainer extends Component {
         gpa: this.state.gpa
     };
 
-    if(this.state.firstname == "" && this.state.lastname == ""){
+    if(this.state.firstname === "" || this.state.lastname === "" || this.state.email === ""){
       this.setState({
         named: false
       });
@@ -83,8 +83,8 @@ class NewStudentContainer extends Component {
   // Render new student input form
   render() {
     // Alert if no name
-    if(this.state.named == false){
-      alert("Invalid Input: Please enter a name");
+    if(this.state.named === false){
+      alert("Invalid Input: Make sure to enter a name and email");
       this.state.named = true;
       this.state.redirect = false;
     }

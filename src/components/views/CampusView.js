@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const CampusView = (props) => {
   const {campus, deleteCampus, fetchStudent, editStudent, fetchAllStudents} = props;
 
-  if(campus.students.length == 0){
+  if(!campus.students.length){
     return (
       <div>
         <img style={{width: '500px',paddingTop: '2rem'}} src={campus.imageURL} alt="campus_image"/>

@@ -46,7 +46,7 @@ class NewCampusContainer extends Component {
         imageURL: this.state.imageURL
     };
 
-    if(this.state.name == ""){
+    if(this.state.name === "" || this.state.address === ""){
       this.setState({
         named: false
       });
@@ -77,8 +77,8 @@ class NewCampusContainer extends Component {
   // Render new campus input form
   render() {
     // Alert if no name
-    if(this.state.named == false){
-      alert("Invalid Input: Please enter a name");
+    if(this.state.named === false){
+      alert("Invalid Input: Make sure to add a name and address");
       this.state.named = true;
       this.state.redirect = false;
     }
