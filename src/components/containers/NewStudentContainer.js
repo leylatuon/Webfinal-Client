@@ -25,7 +25,8 @@ class NewStudentContainer extends Component {
       gpa: 0.0,
       campusId: null, 
       redirect: false, 
-      redirectId: null
+      redirectId: null,
+      named: true
     };
   }
 
@@ -48,9 +49,19 @@ class NewStudentContainer extends Component {
         imageURL: this.state.imageURL,
         gpa: this.state.gpa
     };
-    
-    // Add new student in back-end database
-    let newStudent = await this.props.addStudent(student);
+
+    if(this.state.firstname == "" && this.state.lastname == ""){
+      this.setState({
+        named: false
+      });
+    }
+    else{
+      // Add new student in back-end database
+      let newStudent = await this.props.addStudent(student);
+      this.setState({
+        redirectId: newStudent.id
+      });
+    }
 
     // Update state, and trigger redirect to show the new student
     this.setState({
@@ -61,7 +72,6 @@ class NewStudentContainer extends Component {
       imageURL: "",
       gpa: 0.0,
       redirect: true, 
-      redirectId: newStudent.id
     });
   }
 
@@ -72,8 +82,14 @@ class NewStudentContainer extends Component {
 
   // Render new student input form
   render() {
+    // Alert if no name
+    if(this.state.named == false){
+      alert("Invalid Input: Please enter a name");
+      this.state.named = true;
+      this.state.redirect = false;
+    }
     // Redirect to new student's page after submit
-    if(this.state.redirect) {
+    else if(this.state.redirect) {
       return (<Redirect to={`/student/${this.state.redirectId}`}/>)
     }
 
