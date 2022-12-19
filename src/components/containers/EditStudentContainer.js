@@ -85,6 +85,7 @@ class EditStudentContainer extends Component {
     );
   }
 }
+console.log(student);
 
 const mapState = (state) => {
   return {
