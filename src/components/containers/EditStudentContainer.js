@@ -13,17 +13,17 @@ class EditStudentContainer extends Component {
     this.state = {
       firstname: "", 
       lastname: "", 
+      campusId: null, 
       email: "",
       imageURL: "",
-      gpa: null,
-      campusId: null, 
+      gpa: 0.0,
       redirect: false, 
       redirectId: null
     };
   }
   componentDidMount() {
     //getting student ID from url
-    this.props.fetchStudent(this.props.match.params.id);
+    this.props.fetchStudent(this.props.match.params.id)
   }
   // Capture input data when it is entered
   handleChange = event => {
@@ -37,24 +37,26 @@ class EditStudentContainer extends Component {
     event.preventDefault();  // Prevent browser reload/refresh after submit.
 
     let student = {
-        firstname: this.state.firstname === "" ? this.props.student.firstname : this.state.firstname,
-        lastname: this.state.lastname === "" ? this.props.student.lastname : this.state.lastname,
-        campusId: this.state.campusId === "" ? this.props.student.campusId : this.state.campusId,
-        email: this.state.email === "" ? this.props.student.email : this.state.email,
-        imageURL: this.state.imageURL === "" ? this.props.student.imageURL : this.state.imageURL,
-        gpa: this.state.gpa === null ? this.props.student.gpa : this.state.gpa,
+      id: this.props.student.id,
+      firstname: this.state.firstname === "" ? this.props.student.firstname : this.state.firstname,
+      lastname: this.state.lastname === "" ? this.props.student.lastname : this.state.lastname,
+      campusId: this.state.campusId === null ? this.props.student.campusId : this.state.campusId,
+      email: this.state.email === "" ? this.props.student.email : this.state.email,
+      imageURL: this.state.imageURL === "" ? this.props.student.imageURL : this.state.imageURL,
+      gpa: this.state.gpa === 0.0 ? this.props.student.gpa : this.state.gpa,
     };
-    console.log(student);
+
     await this.props.editStudent(student);
 
     // Update state, and trigger redirect to show the student
     this.setState({
+      id: null,
       firstname: "", 
       lastname: "", 
       campusId: null,
       email: "",
       imageURL: "",
-      gpa: null,
+      gpa: 0.0,
       redirect: true, 
       redirectId: this.props.student.id
     });
@@ -62,7 +64,7 @@ class EditStudentContainer extends Component {
 
   // Unmount when the component is being removed from the DOM:
   componentWillUnmount() {
-      this.setState({redirect: false, redirectId: null});
+    this.setState({redirect: false, redirectId: null});
   }
 
   // Render new student input form
@@ -91,17 +93,17 @@ const mapState = (state) => {
     student: state.student,
   };
 };
-// The following input argument is passed to the "connect" function used by "NewStudentContainer" component to connect to Redux Store.
+// The following input argument is passed to the "connect" function used by "EditStudentContainer" component to connect to Redux Store.
 // The "mapDispatch" argument is used to dispatch Action (Redux Thunk) to Redux Store.
 // The "mapDispatch" calls the specific Thunk to dispatch its action. The "dispatch" is a function of Redux Store.
 const mapDispatch = (dispatch) => {
-    return({
-        editStudent: (student) => dispatch(editStudentThunk(student)),
-        fetchStudent: (id) => dispatch(fetchStudentThunk(id)),
-    })
+  return({
+    editStudent: (student) => dispatch(editStudentThunk(student)),
+    fetchStudent: (id) => dispatch(fetchStudentThunk(id)),
+  })
 }
 
 // Export store-connected container by default
-// NewStudentContainer uses "connect" function to connect to Redux Store and to read values from the Store 
+// EditStudentContainer uses "connect" function to connect to Redux Store and to read values from the Store 
 // (and re-read the values when the Store State updates).
 export default connect(mapState, mapDispatch)(EditStudentContainer);
