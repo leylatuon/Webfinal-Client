@@ -15,7 +15,7 @@ class EditStudentContainer extends Component {
       lastname: "", 
       email: "",
       imageURL: "",
-      gpa: null,
+      gpa: 0.0,
       campusId: null, 
       redirect: false, 
       redirectId: null
@@ -42,7 +42,7 @@ class EditStudentContainer extends Component {
         campusId: this.state.campusId === "" ? this.props.student.campusId : this.state.campusId,
         email: this.state.email === "" ? this.props.student.email : this.state.email,
         imageURL: this.state.imageURL === "" ? this.props.student.imageURL : this.state.imageURL,
-        gpa: this.state.gpa === null ? this.props.student.gpa : this.state.gpa,
+        gpa: this.state.gpa === 0.0 ? this.props.student.gpa : this.state.gpa
     };
     console.log(student);
     await this.props.editStudent(student);
@@ -54,7 +54,7 @@ class EditStudentContainer extends Component {
       campusId: null,
       email: "",
       imageURL: "",
-      gpa: null,
+      gpa: 0.0,
       redirect: true, 
       redirectId: this.props.student.id
     });
@@ -91,7 +91,7 @@ const mapState = (state) => {
     student: state.student,
   };
 };
-// The following input argument is passed to the "connect" function used by "NewStudentContainer" component to connect to Redux Store.
+// The following input argument is passed to the "connect" function used by "EditStudentContainer" component to connect to Redux Store.
 // The "mapDispatch" argument is used to dispatch Action (Redux Thunk) to Redux Store.
 // The "mapDispatch" calls the specific Thunk to dispatch its action. The "dispatch" is a function of Redux Store.
 const mapDispatch = (dispatch) => {
@@ -102,6 +102,6 @@ const mapDispatch = (dispatch) => {
 }
 
 // Export store-connected container by default
-// NewStudentContainer uses "connect" function to connect to Redux Store and to read values from the Store 
+// EditStudentContainer uses "connect" function to connect to Redux Store and to read values from the Store 
 // (and re-read the values when the Store State updates).
 export default connect(mapState, mapDispatch)(EditStudentContainer);
