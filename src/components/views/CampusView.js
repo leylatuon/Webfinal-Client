@@ -29,6 +29,11 @@ const CampusView = (props) => {
       <h1>{campus.name}</h1>
       <p>{campus.address}</p>
       <p>{campus.description}</p>
+      <Link to={`/editcampus/${campus.id}`}>
+        <button>Edit Campus</button>
+      </Link>
+      <button onClick={() => deleteCampus(campus.id)}>Delete</button>
+      
       {campus.students.map( student => {
         let name = student.firstname + " " + student.lastname;
         return (
@@ -44,7 +49,7 @@ const CampusView = (props) => {
               let index = -1;
               for(let i = 0; i < campus.students.length; i++){
                 if(campus.students[i].id == student.id){
-                  student.campusId = null;
+                  student.id.campusId = null;
                   index = i;
                   break;
                 }
@@ -52,7 +57,7 @@ const CampusView = (props) => {
               console.log(index);
               //campus.students.splice(index, 1);
               console.log("Should delete student from campus");
-            }}>Delete</button>
+            }}>Remove Student</button>
           </div>
         );
       })}
