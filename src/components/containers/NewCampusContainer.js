@@ -81,6 +81,7 @@ class NewCampusContainer extends Component {
       alert("Invalid Input: Make sure to add a name and address");
       this.state.named = true;
       this.state.redirect = false;
+      window.location.reload();
     }
     // Redirect to new campus page after submit
     if(this.state.redirect) {

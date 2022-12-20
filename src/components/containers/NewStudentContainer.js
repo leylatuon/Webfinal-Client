@@ -87,6 +87,7 @@ class NewStudentContainer extends Component {
       alert("Invalid Input: Make sure to enter a name and email");
       this.state.named = true;
       this.state.redirect = false;
+      window.location.reload();
     }
     // Redirect to new student's page after submit
     else if(this.state.redirect) {
