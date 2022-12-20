@@ -1,3 +1,9 @@
+## Group Members:
+- Leyla Tuon: leylatuon
+- Brian Hong: bh9232
+- Jeffrey Li: lijeffrey02
+- Samuel Fang: SamuelFang
+
 # client-starter-code
 
 This repository is the client (front-end) starter code for Final Project (CRUD Application).
