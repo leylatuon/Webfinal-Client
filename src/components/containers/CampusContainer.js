@@ -26,11 +26,11 @@ class CampusContainer extends Component {
       <div>
         <Header />
         <CampusView 
-        campus={this.props.campus}
-        editCampus={this.props.editCampus}
-        deleteCampus={this.props.deleteCampus}
-        student={this.props.student} 
-        editStudent={this.props.editStudent}
+          campus={this.props.campus}
+          editCampus={this.props.editCampus}
+          deleteCampus={this.props.deleteCampus}
+          student={this.props.student} 
+          editStudent={this.props.editStudent}
          />
       </div>
     );
