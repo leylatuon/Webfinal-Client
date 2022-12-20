@@ -76,13 +76,6 @@ class NewCampusContainer extends Component {
 
   // Render new campus input form
   render() {
-    // Alert if no name
-    if(this.state.named === false){
-      alert("Invalid Input: Make sure to add a name and address");
-      this.state.named = true;
-      this.state.redirect = false;
-      window.location.reload();
-    }
     // Redirect to new campus page after submit
     if(this.state.redirect) {
       return (<Redirect to={`/campus/${this.state.redirectId}`}/>)
