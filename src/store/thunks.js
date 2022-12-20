@@ -105,11 +105,13 @@ export const addStudentThunk = (student) => async (dispatch) => {  // The THUNK
 // Delete Student
 // THUNK CREATOR:
 export const deleteStudentThunk = studentId => async dispatch => {  // The THUNK
+  console.log("deleting w thonk");
   try {
     // API "delete" call to delete student (based on "studentID") from database
     await axios.delete(`/api/students/${studentId}`);
     // Delete successful so change state with dispatch
     dispatch(ac.deleteStudent(studentId));
+    window.location.reload(false);
   } catch(err) {
     console.error(err);
   }

@@ -5,10 +5,9 @@ The Views component is responsible for rendering web page with data provided by 
 It constructs a React component to display a single campus and its students (if any).
 ================================================== */
 import { Link } from "react-router-dom";
-
 // Take in props data to construct the component
 const CampusView = (props) => {
-  const {campus, deleteCampus, fetchStudent, editStudent, fetchAllStudents} = props;
+  const {campus, deleteCampus, fetchStudent, editStudent, fetchAllStudents, deleteStudent} = props;
 
   if(!campus.students.length){
     return (
@@ -29,17 +28,6 @@ const CampusView = (props) => {
         </Link>
       </div>
     );
-  }
-
-  async function removeStudent(id) {
-    let studentCall = fetchStudent(id)
-    let student;
-    studentCall.then(res => {
-      student = res.data;
-      student.campusId = 1;
-      editStudent(student);
-      window.location.reload(true);
-    })
   }
 
   // Render a single Campus view with list of its students
@@ -66,7 +54,7 @@ const CampusView = (props) => {
             <Link to={`/editstudent/${student.id}`}>
               <button>Edit Student</button>
             </Link>
-            <button onClick={() => removeStudent(student.id)}>Remove Student</button>
+            <button onClick={() => deleteStudent(student.id)} >Remove Student</button>
           </div>
         );
       })}
