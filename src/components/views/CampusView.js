@@ -7,7 +7,7 @@ It constructs a React component to display a single campus and its students (if 
 import { Link } from "react-router-dom";
 // Take in props data to construct the component
 const CampusView = (props) => {
-  const {campus, deleteCampus, fetchStudent, editStudent, fetchAllStudents, deleteStudent} = props;
+  const {campus, deleteCampus, deleteStudent} = props;
 
   if(!campus.students.length){
     return (

@@ -9,7 +9,7 @@ import Header from './Header';
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { fetchCampusThunk, editCampusThunk, deleteCampusThunk, fetchStudentThunk, fetchAllStudentsThunk, editStudentThunk, deleteStudentThunk, deleteStudentThunkFromCampus } from "../../store/thunks";
+import { fetchCampusThunk, editCampusThunk, deleteCampusThunk, editStudentThunk, deleteStudentThunkFromCampus } from "../../store/thunks";
 
 import { CampusView } from "../views";
 
@@ -29,8 +29,6 @@ class CampusContainer extends Component {
           campus={this.props.campus}
           editCampus={this.props.editCampus}
           deleteCampus={this.props.deleteCampus}
-          fetchAllStudents={this.props.fetchAllStudents} 
-          fetchStudent={this.props.fetchStudent} 
           editStudent={this.props.editStudent}
           deleteStudent={this.props.deleteStudent}
          />
@@ -56,8 +54,6 @@ const mapDispatch = (dispatch) => {
     editCampus: (campusId) => dispatch(editCampusThunk(campusId)),
     deleteCampus: (campusId) => dispatch(deleteCampusThunk(campusId)),
     deleteStudent:(studentId) => dispatch(deleteStudentThunkFromCampus(studentId)),
-    fetchAllStudents: () => dispatch(fetchAllStudentsThunk()),
-    fetchStudent: (id) => dispatch(fetchStudentThunk(id)),
     editStudent:(studentId) => dispatch(editStudentThunk(studentId)),
   };
 };
