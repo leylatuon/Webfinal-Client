@@ -82,15 +82,8 @@ class NewStudentContainer extends Component {
 
   // Render new student input form
   render() {
-    // Alert if no name
-    if(this.state.named === false){
-      alert("Invalid Input: Make sure to enter a name and email");
-      this.state.named = true;
-      this.state.redirect = false;
-      window.location.reload();
-    }
     // Redirect to new student's page after submit
-    else if(this.state.redirect) {
+    if(this.state.redirect) {
       return (<Redirect to={`/student/${this.state.redirectId}`}/>)
     }
 

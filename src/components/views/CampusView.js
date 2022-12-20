@@ -31,6 +31,17 @@ const CampusView = (props) => {
     );
   }
 
+  async function removeStudent(id) {
+    let studentCall = fetchStudent(id)
+    let student;
+    studentCall.then(res => {
+      student = res.data;
+      student.campusId = 1;
+      editStudent(student);
+      window.location.reload(true);
+    })
+  }
+
   // Render a single Campus view with list of its students
   return (
     <div>
@@ -55,12 +66,12 @@ const CampusView = (props) => {
             <Link to={`/editstudent/${student.id}`}>
               <button>Edit Student</button>
             </Link>
-            <button onClick={() => student.campusId = null}>Remove Student</button>
+            <button onClick={() => removeStudent(student.id)}>Remove Student</button>
           </div>
         );
       })}
       <br></br>
-      <Link to={`/newstudent`}>
+      <Link to={`/newstudenttocampus`}>
         <button>Add New Student</button>
       </Link>
     </div>
