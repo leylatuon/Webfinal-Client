@@ -117,6 +117,26 @@ export const deleteStudentThunk = studentId => async dispatch => {  // The THUNK
   }
 };
 
+// Delete Student from campus
+// THUNK CREATOR:
+export const deleteStudentThunkFromCampus = studentId => async dispatch => {  // The THUNK
+  try {
+    // API "delete" call to delete student (based on "studentID") from database
+    let student = await axios.get(`/api/students/${studentId}`);
+    dispatch(ac.fetchStudent(student.data));
+    let newStudent = Object.assign({}, student)
+    newStudent.campusId = null;
+    console.log(student);
+    let updatedStudent = await axios.put(`/api/students/${studentId}`, newStudent);
+    // Update successful so change state with dispatch
+    dispatch(ac.editStudent(updatedStudent));
+    // Delete successful so change state with dispatch
+    window.location.reload(false);
+  } catch(err) {
+    console.error(err);
+  }
+};
+
 // Edit Student
 // THUNK CREATOR:
 export const editStudentThunk = student => async dispatch => {  // The THUNK
